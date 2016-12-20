@@ -8,10 +8,6 @@ from instruction import Instruction
 
 
 class MIPSProg:
-	"""
-	Class to handle instructions, labels, values and registers
-	"""
-	
     def __init__(self, lines=None):
         self.text_base = 0
         self.data_base = 0x00400000
