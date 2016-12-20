@@ -1,9 +1,3 @@
-#
-# MIPS assembler
-# CS141 Assignment 6
-#
-# Madhav Datt, Greg Yang
-#
 
 import itertools
 import re
@@ -14,6 +8,10 @@ from instruction import Instruction
 
 
 class MIPSProg:
+	"""
+	Class to handle instructions, labels, values and registers
+	"""
+	
     def __init__(self, lines=None):
         self.text_base = 0
         self.data_base = 0x00400000
@@ -62,6 +60,8 @@ class MIPSProg:
 
             inst = Instruction.parseline(self, loc, line)
             self.instructions.append(inst)
+        
+        # Raise exception if match fails    
         except Exception as e:
             print traceback.format_exc(e)
             sys.exit(1)

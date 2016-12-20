@@ -1,10 +1,3 @@
-#
-# MIPS assembler
-# CS141 Assignment 6
-#
-# Madhav Datt, Greg Yang
-#
-
 import re
 import itertools
 
@@ -35,6 +28,7 @@ instruction_types = [
     re.compile(LINE_BEGIN + NAME_NO_SPACE + EOL)
 ]
 
+# Supported R-type instructions
 r_type = {
     "add": (0x0, 0b100000, ["rd", "rs", "rt"]),
     "and": (0x0, 0b100100, ["rd", "rs", "rt"]),
@@ -49,6 +43,7 @@ r_type = {
     "xor": (0x0, 0b100110, ["rd", "rs", "rt"])
 }
 
+# Supported I-type instructions
 i_type = {
     "addi": (0b001000, ["rt", "rs"]),
     "andi": (0b001100, ["rt", "rs"]),
@@ -62,6 +57,7 @@ i_type = {
     "lw": (0b100011, ["rt", "rs"])
 }
 
+# Supported J-type instructions
 j_type = {
     "j": (0b000010, []),
     "jal": (0b000011, [])
@@ -73,7 +69,7 @@ class Register(object):
     Class associated with registers
     """
 
-    # Register list
+    # Register and register aliases list
     names = [
         ["$0", "$zero", "$r0"],
         ["$1", "$at", "$r1"],
@@ -139,8 +135,9 @@ class Instruction(object):
                  imm=None, label=None):
 
         name = name.lower()
+        # Check if provided instruction is a valid opcode
         if name not in r_type.keys() + i_type.keys() + j_type.keys():
-            raise Exception("'%s' is not a MIPS opcode" % (name.lower()))
+            raise Exception("'%s' is not a valid opcode" % (name.lower()))
 
         self.program = program
         self.position = position

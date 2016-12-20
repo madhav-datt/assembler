@@ -1,16 +1,10 @@
 #!/usr/bin/env python
-#
-# MIPS assembler
-# CS141 Assignment 6
-#
-# Madhav Datt, Greg Yang
-#
 
 import argparse
 import mips_prog
 
 # Command line input argument parsing
-parser = argparse.ArgumentParser(description="CS141 MIPS Assembler")
+parser = argparse.ArgumentParser(description="A small assembler")
 parser.add_argument('filename')
 parser.add_argument('-o', '--output', default=argparse.SUPPRESS,
                     help="Output file path/name.machine", metavar="filename")
