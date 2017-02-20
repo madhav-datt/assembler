@@ -40,5 +40,4 @@ except KeyError:
 _bin = mp.bytes()
 for j in range(len(_bin) / 4):
     output.write("%02x%02x%02x%02x\n" % tuple(_bin[j * 4:j * 4 + 4]))
-
 output.close()
